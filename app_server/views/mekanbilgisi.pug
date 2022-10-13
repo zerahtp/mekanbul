@@ -1,0 +1,66 @@
+extends layout 
+block content
+    .row.page-header
+        .col-lg-12 
+            h1 Zera'nın cafesi 
+    .row 
+        .col-xs-12.col-md-12 
+            .row 
+                .col-xs-12.col-sm-6 
+                    p.rating 
+                        span.glyphicon.glyphicon-star
+                        span.glyphicon.glyphicon-star
+                        span.glyphicon.glyphicon-star
+                        span.glyphicon.glyphicon-star
+                        span.glyphicon.glyphicon-star-empty 
+                    p İyaş AVM 
+                    .panel.panel-primary 
+                        .panel-heading 
+                            h2.panel-tittle Açılış Saatleri 
+                        .panel-body 
+                            p 
+                                | Pazartesi-Cuma 7:00-24:00 
+                            p 
+                                | Cumartesi-Pazar  9:00-01:00
+                    .panel.panel-primary 
+                        .panel-heading 
+                            h2.panel-tittle Neler Var?
+                        .panel-body 
+                            span.label.label-warning pankekler 
+                            | &nbsp;
+                            span.label.label-warning muffinler 
+                            | &nbsp;
+                            span.label.label-warning tostlar 
+                            | &nbsp;
+                .col-xs-12.col-sm-6
+                    .panel.panel-primary 
+                        .panel-heading 
+                            h2.panel-title Konum Bilgisi
+                        .panel-body 
+                            -var enlem=37.78
+                            -var boylam=30.56
+                            img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center='+enlem+','+boylam+'&zoom=12&size=600x400&markers='+enlem+','+boylam+'&key=AIzaSyCmmKygTpBzHGOZEciJpAdxC9v_tWHagnE')
+
+                            
+            .row 
+                .col-xs-12 
+                    .panel.panel-primary 
+                        .panel-heading 
+                            a.btn.btn-default.pull-right(href='/mekan/yorum/yeni') Yorum Ekle
+                            h2.panel-title Müşteri Yorumları
+                        .panel-body.review-container 
+                            .row 
+                                .review 
+                                    .well.well-sm.review-header 
+                                        span.rating 
+                                        span.glyphicon.glyphicon-star
+                                        span.glyphicon.glyphicon-star
+                                        span.glyphicon.glyphicon-star
+                                        span.glyphicon.glyphicon-star
+                                        span.glyphicon.glyphicon-star-empty 
+                                        span.review-author Zehra Hatipoğlu 
+                                        small.reviewTimestamp &nbsp; 15 ekim 2022
+                                    .col-xs-12
+                                        p pankek iğrenç
+
+
