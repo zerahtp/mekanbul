@@ -55,7 +55,7 @@ const mekanBilgisi = function(req, res, next) {
 
         ],
         "imkanlar": ["Waffle", "Muffin", "Pankek"],
-        "koordinatlar": {
+        "koordinat": {
           "enlem": "37.7",
           "boylam": "30.5"
         },
