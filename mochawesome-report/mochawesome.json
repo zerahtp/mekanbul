@@ -2,14 +2,14 @@
   "stats": {
     "suites": 9,
     "tests": 9,
-    "passes": 0,
+    "passes": 8,
     "pending": 0,
-    "failures": 9,
-    "start": "2022-11-28T17:45:41.395Z",
-    "end": "2022-11-28T17:46:01.929Z",
-    "duration": 20534,
+    "failures": 1,
+    "start": "2022-11-28T18:15:34.849Z",
+    "end": "2022-11-28T18:15:35.021Z",
+    "duration": 172,
     "testsRegistered": 9,
-    "passPercent": 0,
+    "passPercent": 88.88888888888889,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "81fbbeed-3181-4931-9189-fdfdd3fec71a",
+      "uuid": "766dd95d-1be8-49a0-b14f-05147fe07667",
       "title": "",
       "fullFile": "",
       "file": "",
@@ -37,8 +37,8 @@
           "context": null,
           "code": "done();",
           "err": {},
-          "uuid": "9f9b94d6-38ae-48b7-bc1d-fbbeaa954993",
-          "parentUUID": "81fbbeed-3181-4931-9189-fdfdd3fec71a",
+          "uuid": "381ffd6b-6d8d-406b-8837-abc8a21ddf6b",
+          "parentUUID": "766dd95d-1be8-49a0-b14f-05147fe07667",
           "isHook": true,
           "skipped": false
         }
@@ -46,7 +46,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "e1c7e6ce-6e6a-41ee-ac6c-385de2ce092f",
+          "uuid": "dd1d820b-94ce-4c54-9d74-e28803ac4145",
           "title": "POST /api/mekanlar",
           "fullFile": "C:\\Users\\dell\\Desktop\\mekanbul\\test.js",
           "file": "\\test.js",
@@ -57,39 +57,35 @@
               "title": "Yeni mekan ekle:",
               "fullTitle": "POST /api/mekanlar Yeni mekan ekle:",
               "timedOut": false,
-              "duration": 2294,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 48,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "const response = await request.post(\"/api/mekanlar\").send({\n  ad: \"Starbucks\",\n  adres: \"Centrum Garden\",\n  puan: 5,\n  imkanlar: \"çay,kahve,pasta\",\n  enlem: 37.83226584629666,\n  boylam: 30.524732239878013,\n  gunler1: \"Pazartesi-Cuma\",\n  acilis1: \"9:00\",\n  kapanis1: \"23:00\",\n  kapali1: false,\n  gunler2: \"Cumartesi-Pazar\",\n  acilis2: \"11:00\",\n  kapanis2: \"17:00\",\n  kapali2: false,\n});\nexpect(response.status).to.eql(201);\nprocess.env.mekanid = response.body._id;",
-              "err": {
-                "message": "Error: getaddrinfo ENOTFOUND mongodb",
-                "estack": "Error: getaddrinfo ENOTFOUND mongodb\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)",
-                "diff": null
-              },
-              "uuid": "65aacff1-90db-40fa-ae49-63b592591686",
-              "parentUUID": "e1c7e6ce-6e6a-41ee-ac6c-385de2ce092f",
+              "err": {},
+              "uuid": "139f9fad-5fc1-4f58-bb3f-fd5c804eb864",
+              "parentUUID": "dd1d820b-94ce-4c54-9d74-e28803ac4145",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "65aacff1-90db-40fa-ae49-63b592591686"
+          "passes": [
+            "139f9fad-5fc1-4f58-bb3f-fd5c804eb864"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2294,
+          "duration": 48,
           "root": false,
           "rootEmpty": false,
           "_timeout": 10000
         },
         {
-          "uuid": "5d0cd261-5173-4022-8de8-6e769b3a2f2b",
+          "uuid": "689cda72-e63c-4e9e-8fcf-b8a13eacab6a",
           "title": "GET /api/mekanlar",
           "fullFile": "C:\\Users\\dell\\Desktop\\mekanbul\\test.js",
           "file": "\\test.js",
@@ -100,7 +96,7 @@
               "title": "Girilen konum civarındaki tüm mekanları listele:",
               "fullTitle": "GET /api/mekanlar Girilen konum civarındaki tüm mekanları listele:",
               "timedOut": false,
-              "duration": 2265,
+              "duration": 18,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -109,12 +105,12 @@
               "context": null,
               "code": "const response = await request.get(\"/api/mekanlar?enlem=37&boylam=35\");\nexpect(response.status).to.eql(200);",
               "err": {
-                "message": "Error: getaddrinfo ENOTFOUND mongodb",
-                "estack": "Error: getaddrinfo ENOTFOUND mongodb\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)",
-                "diff": null
+                "message": "AssertionError: expected 404 to deeply equal 200",
+                "estack": "AssertionError: expected 404 to deeply equal 200\n    at Context.<anonymous> (test.js:30:32)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)",
+                "diff": "- 404\n+ 200\n"
               },
-              "uuid": "bc68e460-a2e4-46d7-9ade-3fee7bcfce2a",
-              "parentUUID": "5d0cd261-5173-4022-8de8-6e769b3a2f2b",
+              "uuid": "e5b48f0b-ccc6-411d-9bbf-839cd792125a",
+              "parentUUID": "689cda72-e63c-4e9e-8fcf-b8a13eacab6a",
               "isHook": false,
               "skipped": false
             }
@@ -122,17 +118,17 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "bc68e460-a2e4-46d7-9ade-3fee7bcfce2a"
+            "e5b48f0b-ccc6-411d-9bbf-839cd792125a"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 2265,
+          "duration": 18,
           "root": false,
           "rootEmpty": false,
           "_timeout": 10000
         },
         {
-          "uuid": "521bb3e4-7473-409d-b06c-f255abdae7f0",
+          "uuid": "92fd48b1-52bd-45b9-b954-97cb276c5127",
           "title": "GET /api/mekanlar/:mekanid",
           "fullFile": "C:\\Users\\dell\\Desktop\\mekanbul\\test.js",
           "file": "\\test.js",
@@ -143,39 +139,35 @@
               "title": "Mekan getir:",
               "fullTitle": "GET /api/mekanlar/:mekanid Mekan getir:",
               "timedOut": false,
-              "duration": 2281,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 9,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "const response = await request.get(`/api/mekanlar/${process.env.mekanid}`);\nexpect(response.status).to.eql(200);",
-              "err": {
-                "message": "Error: getaddrinfo ENOTFOUND mongodb",
-                "estack": "Error: getaddrinfo ENOTFOUND mongodb\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)",
-                "diff": null
-              },
-              "uuid": "febeed1a-e892-4b29-8319-e57345b79e0b",
-              "parentUUID": "521bb3e4-7473-409d-b06c-f255abdae7f0",
+              "err": {},
+              "uuid": "fb35f1de-2580-4fa6-aac5-aafafb8b3cd0",
+              "parentUUID": "92fd48b1-52bd-45b9-b954-97cb276c5127",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "febeed1a-e892-4b29-8319-e57345b79e0b"
+          "passes": [
+            "fb35f1de-2580-4fa6-aac5-aafafb8b3cd0"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2281,
+          "duration": 9,
           "root": false,
           "rootEmpty": false,
           "_timeout": 10000
         },
         {
-          "uuid": "075a7d1b-116f-47d3-a98f-12587433dad0",
+          "uuid": "db1aacd0-747d-4658-8e24-cc88d7fe10bf",
           "title": "PUT /api/mekanlar/:mekanid",
           "fullFile": "C:\\Users\\dell\\Desktop\\mekanbul\\test.js",
           "file": "\\test.js",
@@ -186,39 +178,35 @@
               "title": "Mekan Güncelle:",
               "fullTitle": "PUT /api/mekanlar/:mekanid Mekan Güncelle:",
               "timedOut": false,
-              "duration": 2292,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 14,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "const response = await request\n  .put(`/api/mekanlar/${process.env.mekanid}`)\n  .send({\n    ad: \"Starbucks SDÜ\",\n    adres: \"SDÜ Doğu Kampüsü\",\n    puan: 3,\n    imkanlar: \"çay,kahve,pasta,refresher\",\n    enlem: 37.8,\n    boylam: 30.5,\n    gunler1: \"Pazartesi-Cuma\",\n    acilis1: \"9:10\",\n    kapanis1: \"23:10\",\n    kapali1: true,\n    gunler2: \"Cumartesi-Pazar\",\n    acilis2: \"11:10\",\n    kapanis2: \"17:10\",\n    kapali2: true,\n  });\nexpect(response.status).to.eql(200);",
-              "err": {
-                "message": "Error: getaddrinfo ENOTFOUND mongodb",
-                "estack": "Error: getaddrinfo ENOTFOUND mongodb\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)",
-                "diff": null
-              },
-              "uuid": "9034da6c-1ae5-4ec0-9b1c-470320e085f4",
-              "parentUUID": "075a7d1b-116f-47d3-a98f-12587433dad0",
+              "err": {},
+              "uuid": "fa078f99-af33-4ee0-8698-48e73ef76564",
+              "parentUUID": "db1aacd0-747d-4658-8e24-cc88d7fe10bf",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "9034da6c-1ae5-4ec0-9b1c-470320e085f4"
+          "passes": [
+            "fa078f99-af33-4ee0-8698-48e73ef76564"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2292,
+          "duration": 14,
           "root": false,
           "rootEmpty": false,
           "_timeout": 10000
         },
         {
-          "uuid": "711d05e0-960a-4c36-b9c8-fc78a6b04fe7",
+          "uuid": "ff66fe8f-3f65-43eb-b77f-cada77764324",
           "title": "POST /api/mekanlar/:mekanid/yorumlar",
           "fullFile": "C:\\Users\\dell\\Desktop\\mekanbul\\test.js",
           "file": "\\test.js",
@@ -229,39 +217,35 @@
               "title": "Yorum ekle:",
               "fullTitle": "POST /api/mekanlar/:mekanid/yorumlar Yorum ekle:",
               "timedOut": false,
-              "duration": 2265,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 10,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "const response = await request\n  .post(`/api/mekanlar/${process.env.mekanid}/yorumlar`)\n  .send({\n    yorumYapan: \"ASY\",\n    puan: 5,\n    yorumMetni: \"Kahveler harika\",\n  });\nprocess.env.yorumid = response.body._id;\nexpect(response.status).to.eql(201);",
-              "err": {
-                "message": "Error: getaddrinfo ENOTFOUND mongodb",
-                "estack": "Error: getaddrinfo ENOTFOUND mongodb\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)",
-                "diff": null
-              },
-              "uuid": "9a0a8319-5662-4f43-956d-dc4cfe667c9f",
-              "parentUUID": "711d05e0-960a-4c36-b9c8-fc78a6b04fe7",
+              "err": {},
+              "uuid": "001dfd07-a2a7-48e3-a442-26eff34d2bcc",
+              "parentUUID": "ff66fe8f-3f65-43eb-b77f-cada77764324",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "9a0a8319-5662-4f43-956d-dc4cfe667c9f"
+          "passes": [
+            "001dfd07-a2a7-48e3-a442-26eff34d2bcc"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2265,
+          "duration": 10,
           "root": false,
           "rootEmpty": false,
           "_timeout": 10000
         },
         {
-          "uuid": "24a6068c-d68c-4f7c-a588-0cd870fcb371",
+          "uuid": "870d431d-1576-4c22-a4a5-c3117e3e5f6e",
           "title": "GET /api/mekanlar/:mekanid/yorumlar/:yorumid",
           "fullFile": "C:\\Users\\dell\\Desktop\\mekanbul\\test.js",
           "file": "\\test.js",
@@ -272,39 +256,35 @@
               "title": "Yorum getir:",
               "fullTitle": "GET /api/mekanlar/:mekanid/yorumlar/:yorumid Yorum getir:",
               "timedOut": false,
-              "duration": 2277,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 11,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "const response = await request.get(\n  `/api/mekanlar/${process.env.mekanid}/yorumlar/${process.env.yorumid}`\n);\nexpect(response.status).to.eql(200);",
-              "err": {
-                "message": "Error: getaddrinfo ENOTFOUND mongodb",
-                "estack": "Error: getaddrinfo ENOTFOUND mongodb\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)",
-                "diff": null
-              },
-              "uuid": "8d72700b-a9f6-48bb-afce-063b162e41d3",
-              "parentUUID": "24a6068c-d68c-4f7c-a588-0cd870fcb371",
+              "err": {},
+              "uuid": "5b81d300-2221-4ce8-9b24-2edbfc21d84d",
+              "parentUUID": "870d431d-1576-4c22-a4a5-c3117e3e5f6e",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "8d72700b-a9f6-48bb-afce-063b162e41d3"
+          "passes": [
+            "5b81d300-2221-4ce8-9b24-2edbfc21d84d"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2277,
+          "duration": 11,
           "root": false,
           "rootEmpty": false,
           "_timeout": 10000
         },
         {
-          "uuid": "49a14454-18c8-4c1a-92e4-b0f6a8170d87",
+          "uuid": "8c189f0f-fad6-4678-ad73-a14d1916fc97",
           "title": "PUT /api/mekanlar/:mekanid/yorumlar/:yorumid",
           "fullFile": "C:\\Users\\dell\\Desktop\\mekanbul\\test.js",
           "file": "\\test.js",
@@ -315,39 +295,35 @@
               "title": "Yorum güncelle:",
               "fullTitle": "PUT /api/mekanlar/:mekanid/yorumlar/:yorumid Yorum güncelle:",
               "timedOut": false,
-              "duration": 2272,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 12,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "const response = await request\n  .put(\n    `/api/mekanlar/${process.env.mekanid}/yorumlar/${process.env.yorumid}`\n  )\n  .send({\n    yorumYapan: \"Sinan\",\n    puan: 4,\n    yorumMetni: \"Kahveler harikaaaa\",\n  });\nexpect(response.status).to.eql(200);",
-              "err": {
-                "message": "Error: getaddrinfo ENOTFOUND mongodb",
-                "estack": "Error: getaddrinfo ENOTFOUND mongodb\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)",
-                "diff": null
-              },
-              "uuid": "db1f8649-bc4f-439f-8371-53411b1f2941",
-              "parentUUID": "49a14454-18c8-4c1a-92e4-b0f6a8170d87",
+              "err": {},
+              "uuid": "82f76207-9a6f-4d14-b759-f3f59b0dcbd7",
+              "parentUUID": "8c189f0f-fad6-4678-ad73-a14d1916fc97",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "db1f8649-bc4f-439f-8371-53411b1f2941"
+          "passes": [
+            "82f76207-9a6f-4d14-b759-f3f59b0dcbd7"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2272,
+          "duration": 12,
           "root": false,
           "rootEmpty": false,
           "_timeout": 10000
         },
         {
-          "uuid": "86a4ac42-a14e-45d3-8ca0-1a4c1e3a6e58",
+          "uuid": "2321693a-0774-4754-b14b-a991da2f51e5",
           "title": "DELETE /api/mekanlar/:mekanid/yorumlar/:yorumid",
           "fullFile": "C:\\Users\\dell\\Desktop\\mekanbul\\test.js",
           "file": "\\test.js",
@@ -358,39 +334,35 @@
               "title": "Yorum sil:",
               "fullTitle": "DELETE /api/mekanlar/:mekanid/yorumlar/:yorumid Yorum sil:",
               "timedOut": false,
-              "duration": 2268,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 12,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "const response = await request.delete(\n  `/api/mekanlar/${process.env.mekanid}/yorumlar/${process.env.yorumid}`\n);\nexpect(response.status).to.eql(200);",
-              "err": {
-                "message": "Error: getaddrinfo ENOTFOUND mongodb",
-                "estack": "Error: getaddrinfo ENOTFOUND mongodb\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)",
-                "diff": null
-              },
-              "uuid": "9bd28994-973a-4f2d-8d00-41c9f9b7c938",
-              "parentUUID": "86a4ac42-a14e-45d3-8ca0-1a4c1e3a6e58",
+              "err": {},
+              "uuid": "a5986f5d-9266-40f1-9c05-1c2d19a99d0a",
+              "parentUUID": "2321693a-0774-4754-b14b-a991da2f51e5",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "9bd28994-973a-4f2d-8d00-41c9f9b7c938"
+          "passes": [
+            "a5986f5d-9266-40f1-9c05-1c2d19a99d0a"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2268,
+          "duration": 12,
           "root": false,
           "rootEmpty": false,
           "_timeout": 10000
         },
         {
-          "uuid": "fa188f38-980e-495b-b852-1dca37b04534",
+          "uuid": "af63adce-627e-42c1-9e37-a3b044d0a439",
           "title": "DELETE /api/mekanlar/:mekanid",
           "fullFile": "C:\\Users\\dell\\Desktop\\mekanbul\\test.js",
           "file": "\\test.js",
@@ -401,33 +373,29 @@
               "title": "Mekan sil:",
               "fullTitle": "DELETE /api/mekanlar/:mekanid Mekan sil:",
               "timedOut": false,
-              "duration": 2289,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 6,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "const response = await request.delete(\n  `/api/mekanlar/${process.env.mekanid}`\n);\nexpect(response.status).to.eql(200);",
-              "err": {
-                "message": "Error: getaddrinfo ENOTFOUND mongodb",
-                "estack": "Error: getaddrinfo ENOTFOUND mongodb\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)",
-                "diff": null
-              },
-              "uuid": "4ce932a5-844a-413e-aaf7-98478e897190",
-              "parentUUID": "fa188f38-980e-495b-b852-1dca37b04534",
+              "err": {},
+              "uuid": "bb04f16d-0470-481e-9fab-a5acbe794aad",
+              "parentUUID": "af63adce-627e-42c1-9e37-a3b044d0a439",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "4ce932a5-844a-413e-aaf7-98478e897190"
+          "passes": [
+            "bb04f16d-0470-481e-9fab-a5acbe794aad"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2289,
+          "duration": 6,
           "root": false,
           "rootEmpty": false,
           "_timeout": 10000
