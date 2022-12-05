@@ -1,89 +1,104 @@
+const axios=require("axios");
+var apiSecenekleri={
+    sunucu:"http://localhost:3000",
+    //sunucu:"https://mekanbul-3.haydarozlukk.repl.co",
+    apiYolu:"/api/mekanlar/"
+}
+var mesafeyiFormatla=function(mesafe){
+    var yeniMesafe,birim;
+    if(mesafe>1){
+        yeniMesafe=parseFloat(mesafe).toFixed(1);
+        birim=" km";
+    }else{
+        yeniMesafe=parseInt(mesafe*1000,10); 
+        birim=" m";
+    }
+     return yeniMesafe+birim; 
+}
 var express = require('express');
 var router = express.Router();
-
-//anasayfa ismi sabit kalması için const yapılır
-
-const anaSayfa = function(req, res, next) {
-  res.render('anasayfa',
-    {
-      "baslik": 'Zehra Hatipoğlu',
-      "sayfaBaslik": {
-        "siteAd": "MekanBul",
-        "slogan": "Civardaki Mekanları Kesfet!"
-      },
-      "mekanlar": [
-        {
-          "ad": "Zera Cafe",
-          "puan": "5",
-          "adres": "IYAS karşısı",
-          "imkanlar": ["Waffle", "Muffin", "Pankek"],
-          "mesafe": "100km"
-        },
-        {
-          "ad": "Starbucks",
-          "puan": "40",
-          "adres": "SDÜ Batı Kampüsü",
-          "imkanlar": ["Kahve", "Cheesecake"],
-          "mesafe": "50m"
+var anaSayfaOlustur=function(res,mekanListesi){
+    var mesaj;
+    if(!(mekanListesi instanceof Array)){
+        mesaj="API HATASI: Bir şeyler ters gitti.";
+        mekanListesi=[];
+    }else{
+        if(!mekanListesi.length){
+            mesaj="Civarda herhangi bir mekan yok."
         }
-
-      ]
-
-    });
-}
-
-const mekanBilgisi = function(req, res, next) {
-  res.render('mekanbilgisi',
-    {
-      "baslik": 'Mekan Bilgisi',
-      "mekanBaslik": "Zera Cafe",
-      "mekanDetay": {
-        "ad": "Zera Cafe",
-        "puan": "5",
-        "adres": "IYAS karşısı",
-        "saatler": [
-          {
-            "gunler": "Pazartesi - Cuma",
-            "acilis": "08:00-23:00",
-            "kapali": "false"
-          },
-          {
-            "gunler": "Cumartesi - Pazar",
-            "acilis": "09:00-01:00",
-            "kapali": "false"
-          }
-
-        ],
-        "imkanlar": ["Waffle", "Muffin", "Pankek"],
-        "koordinat": {
-          "enlem": "37.7",
-          "boylam": "30.5"
+    }
+    res.render("anasayfa",{
+        "baslik":"Anasayfa",
+        "sayfaBaslik":{
+            "siteAd":"Mekanbul",
+            "slogan":"Mekanları Keşfet"
         },
-        "yorumlar": [
-          {
-            "yorumYapan": "Zehra Hatipoğlu",
-            "yorumMetni": "Her şey mükemmel",
-            "tarih": "21 Ekim 2022",
-            "puan": "5"
-          },
-          {
-            "yorumYapan": "Zeynep Hatipoğlu",
-            "yorumMetni": "çalışanlar inanılmaz tatlı",
-            "tarih": "21 Ekim 2022",
-            "puan": "5"
-          }
-        ]
-      }
+        "mekanlar":mekanListesi,
+        "mesaj":mesaj
     });
 }
 
-const yorumEkle = function(req, res, next) {
-  res.render('yorumekle', { title: 'Yorum Ekle' });
+const anaSayfa=function(req,res,next){
+    axios.get(apiSecenekleri.sunucu+apiSecenekleri.apiYolu,{
+        params:{
+            enlem:req.query.enlem,
+            boylam:req.query.boylam
+        }
+    }).then(function(response){ 
+        var i,mekanlar;
+        mekanlar=response.data; 
+        for(i=0;i<mekanlar.length;i++){
+            mekanlar[i].mesafe=mesafeyiFormatla(mekanlar[i].mesafe);
+        }
+        anaSayfaOlustur(res,mekanlar);
+    }).catch(function(hata){
+        anaSayfaOlustur(res,hata);
+    });
 }
 
-module.exports = {
-  anaSayfa, mekanBilgisi, yorumEkle
+var detaySayfasiOlustur=function(res,mekanDetaylari){
+    mekanDetaylari.koordinat={
+        "enlem":mekanDetaylari.koordinat[0],
+        "boylam":mekanDetaylari.koordinat[1]
+    }
+    res.render('mekanbilgisi',
+    {
+        mekanBaslik:mekanDetaylari.ad,
+        mekanDetay:mekanDetaylari
+    });
 }
-
-  
  
+var hataGoster = function(res,hata){
+    var mesaj;
+    if(hata.response.status==404){
+        mesaj="404, Sayfa Bulunamadı";
+    }
+    else{
+        mesaj=hata.response.status+" hatası";
+    }
+    res.status(hata.response.status);
+    res.render('error',{
+    "mesaj":mesaj
+    });
+};
+
+const mekanBilgisi=function(req,res){
+   axios
+    .get(apiSecenekleri.sunucu+apiSecenekleri.apiYolu+req.params.mekanid)
+    .then(function(response){
+        detaySayfasiOlustur(res,response.data);
+    })
+    .catch(function(hata){
+        hataGoster(res,hata);
+    });
+};
+
+const yorumEkle=function(req,res,next){
+    res.render('yorumekle',{title: 'Yorum Ekle'});
+}
+
+module.exports={
+    anaSayfa,
+    mekanBilgisi,
+    yorumEkle
+}
