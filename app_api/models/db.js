@@ -3,7 +3,7 @@ var mongoose=require("mongoose");
 var dbURI="mongodb+srv://zerahtp:mekanbul123@mekanbul.vzr6zbb.mongodb.net/mekanbul?retryWrites=true&w=majority";
 
 mongoose.connect(dbURI);
-function kapat(msg,callback){
+function    kapat(msg,callback){
     mongoose.connection.close(function(){
         console.log(msg);
         callback();
@@ -11,8 +11,8 @@ function kapat(msg,callback){
 
 }
 process.on("SIGINT",function(){
-    kapat("Uygulama kapatıldı",function(){
-        process.exit(0)
+    kapat("uygulama kapatıldı",function(){
+            process.exit(0);
     });
 });
 
@@ -26,7 +26,5 @@ mongoose.connection.on("disconnected",function(){
 mongoose.connection.on("error",function(){
     console.log(dbURI+"bağlantı kesildi.\n");
 });
-require("./mekansema"); 
 
-
-
+require("./mekansema");
